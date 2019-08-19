@@ -40,14 +40,10 @@ namespace SocketProxy
             _tcpSocket.Close();
         }
 
-        public void Shutdown(SocketShutdown how)
-        {
-            _tcpSocket.Shutdown(how);
-        }
 
-        public void Send(byte[] buffer)
+        public void SendTo(byte[] buffer, EndPoint endPoint)
         {
-            _tcpSocket.Send(buffer);
+            _tcpSocket.SendTo(buffer, endPoint);
         }
 
         public void Bind(EndPoint localEndPoint)

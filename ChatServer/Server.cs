@@ -23,12 +23,43 @@ namespace ChatServer
         {
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream
                 , ProtocolType.Tcp);
-            _socket.Bind(new IPEndPoint(ip, port));
+
+            try
+            {
+                _socket.Bind(new IPEndPoint(ip, port));
+                _socket.Listen(6);
+
+                Console.WriteLine("Waiting for connection...");
+                _socket.Accept();
+
+                string data = null;
+                byte[] bytes = null;
+
+                while (true)
+                {
+                    bytes = new byte[1024];
+                    int bytesReceived = _socket.Receive(bytes);
+
+                    data += Encoding.ASCII.GetString(bytes, 0, bytesReceived);
+                    if (data.IndexOf("<EOF>") > -1)
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("User connected: {0}", data);
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
         }
 
         public void CloseSocket() {
-            _socket.Shutdown(SocketShutdown.Both);
+
             _socket.Close();
+
         }
     }
 }

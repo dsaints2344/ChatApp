@@ -37,6 +37,7 @@ namespace ChatServer
                 {
                     ChatServer.CloseSocket();
                     Console.WriteLine("Closing Socket...");
+                    break;
                 }
             }
 

@@ -14,8 +14,7 @@ namespace SocketProxy
         void Connect(IPAddress ip, int port);
         bool Connected();
         void Close();
-        void Shutdown(SocketShutdown how);
-        void Send(byte[] buffer);
+        void SendTo(byte[] buffer, EndPoint endPoint);
         void Bind(EndPoint localEndPoint);
         void Listen(int backlog);
         int Receive(byte[] buffer);

@@ -35,14 +35,9 @@ namespace SocketProxy
             _mock.Object.Close();
         }
 
-        public void Shutdown(SocketShutdown how)
+        public void SendTo(byte[] buffer, EndPoint endPoint)
         {
-            _mock.Object.Shutdown(how);
-        }
-
-        public void Send(byte[] buffer)
-        {
-            _mock.Object.Send(buffer);
+            _mock.Object.SendTo(buffer, endPoint);
         }
 
         public void Bind(EndPoint localEndPoint)
@@ -89,19 +84,14 @@ namespace SocketProxy
             _mock.Verify(x => x.Listen(backlog));
         }
 
-        public void VerifySend(byte[] buffer)
+        public void VerifySend(byte[] buffer, EndPoint endPoint)
         {
-            _mock.Verify(x => x.Send(buffer));
+            _mock.Verify(x => x.SendTo(buffer, endPoint));
         }
 
         public void VerifyReceive(byte[] buffer)
         {
             _mock.Verify(x => x.Receive(buffer));
-        }
-
-        public void VerifyShutdown(SocketShutdown how)
-        {
-            _mock.Verify(x => x.Shutdown(how), Times.Once);
         }
 
         public void VerifyClose()

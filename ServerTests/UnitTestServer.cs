@@ -11,7 +11,7 @@ namespace ServerTests
     public class UnitTestServer
     {
         [TestMethod]
-        public void StartServer()
+        public void Start_Server()
         {
             var mockedServer = new MockSocketProxy();
             var testServer = new Server(mockedServer);
@@ -27,7 +27,6 @@ namespace ServerTests
             var testServer = new Server(mockedServer);
 
             testServer.CloseSocket();
-            mockedServer.VerifyShutdown(SocketShutdown.Both);
             mockedServer.VerifyClose();
             
         }
