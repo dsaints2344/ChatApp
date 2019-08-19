@@ -13,16 +13,17 @@ namespace ChatServer
     {
         private readonly ISocketProxy _socket;
 
+
         public Server(ISocketProxy socket)
         {
             _socket = socket;
         }
 
-        public void Run()
+        public void Run(IPAddress ip, int port)
         {
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream
                 , ProtocolType.Tcp);
-            
+            _socket.Bind(new IPEndPoint(ip, port));
         }
     }
 }

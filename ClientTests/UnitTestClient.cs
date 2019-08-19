@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ServerTests
+namespace ClientTests
 {
     [TestClass]
-    public class UnitTest1
+    public class UnitTestClient
     {
         [TestMethod]
         public void TestMethod1()
