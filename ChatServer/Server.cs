@@ -19,11 +19,16 @@ namespace ChatServer
             _socket = socket;
         }
 
-        public void Run(IPAddress ip, int port)
+        public void RunSocket(IPAddress ip, int port)
         {
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream
                 , ProtocolType.Tcp);
             _socket.Bind(new IPEndPoint(ip, port));
+        }
+
+        public void CloseSocket() {
+            _socket.Shutdown(SocketShutdown.Both);
+            _socket.Close();
         }
     }
 }

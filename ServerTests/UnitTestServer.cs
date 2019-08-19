@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Sockets;
 using ChatServer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SocketProxy;
@@ -15,8 +16,20 @@ namespace ServerTests
             var mockedServer = new MockSocketProxy();
             var testServer = new Server(mockedServer);
 
-            testServer.Run(IPAddress.Parse("180.0.0.0"), 2100);
+            testServer.RunSocket(IPAddress.Parse("180.0.0.0"), 2100);
             mockedServer.VerifyBind(new IPEndPoint(IPAddress.Parse("180.0.0.0"), 2100));
+        }
+
+        [TestMethod]
+        public void ShutDown_And_Close_Socket()
+        {
+            var mockedServer = new MockSocketProxy();
+            var testServer = new Server(mockedServer);
+
+            testServer.CloseSocket();
+            mockedServer.VerifyShutdown(SocketShutdown.Both);
+            mockedServer.VerifyClose();
+            
         }
     }
 }

@@ -14,17 +14,32 @@ namespace ChatServer
             SocketProxy.SocketProxy s = new SocketProxy.SocketProxy();
             Server ChatServer = new Server(s);
 
-            string command = Console.ReadLine();
-
-            switch (command)
+            int connectCounter = 0;
+            Console.WriteLine("type one of the commands below:");
+            Console.WriteLine("Connect");
+            Console.WriteLine("Close");
+            Console.WriteLine("* The command Connect starts the server");
+            Console.WriteLine("* The command Close stops the server and frees the socket");
+            while (true)
             {
-                case "connect":
-                    ChatServer.Run(IPAddress.Parse("127.0.0.1"), 8080);
-                    Console.WriteLine("Server Running...");
+                string command = Console.ReadLine();
+                if (command == null)
+                {
                     break;
-                default:
-                    break;
+                }
+                if ((command == "Connect" && connectCounter == 0) || (command == "connect" && connectCounter == 0))
+                {
+                    ChatServer.RunSocket(IPAddress.Parse("127.0.0.1"), 8080);
+                    Console.WriteLine("Starting server at IPAddress: 127.0.0.1 on port 8080");
+                    
+                }
+                if (command == "Close" || command == "close")
+                {
+                    ChatServer.CloseSocket();
+                    Console.WriteLine("Closing Socket...");
+                }
             }
+
         }
     }
 }
