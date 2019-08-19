@@ -13,7 +13,18 @@ namespace ChatServer
         {
             SocketProxy.SocketProxy s = new SocketProxy.SocketProxy();
             Server ChatServer = new Server(s);
-            ChatServer.Run(IPAddress.Parse("127.0.0.1"), 8080);
+
+            string command = Console.ReadLine();
+
+            switch (command)
+            {
+                case "connect":
+                    ChatServer.Run(IPAddress.Parse("127.0.0.1"), 8080);
+                    Console.WriteLine("Server Running...");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
