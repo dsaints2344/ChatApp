@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatServer
 {
-    class Program
+    static class Program
     {
         static void Main(string[] args)
         {
@@ -33,6 +33,11 @@ namespace ChatServer
                     connectCounter++;
                     Console.WriteLine("Starting server at IPAddress: 127.0.0.1 on port 8080");
                     
+                }
+
+                if ((command == "Listen" && connectCounter == 1) || (command == "listen" && connectCounter == 1))
+                {
+                    chatServer.ReceiveConnections();
                 }
                 if (command == "Close" || command == "close")
                 {
