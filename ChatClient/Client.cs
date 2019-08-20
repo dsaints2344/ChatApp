@@ -25,12 +25,11 @@ namespace ChatClient
                 _socket.Connect(ip, port);
                 bool c = _socket.Connected();
                 Console.WriteLine(c);
-                Console.ReadKey();
                 byte[] msg = Encoding.ASCII.GetBytes("This is a test<EOF>");
 
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
                 // Send the data through the socket.    
-                _socket.SendTo(msg,  endPoint);
+                _socket.Send(msg);
                 
             }
             catch (Exception)

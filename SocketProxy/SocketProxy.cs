@@ -46,9 +46,9 @@ namespace SocketProxy
         }
 
 
-        public void SendTo(byte[] buffer, EndPoint endPoint)
+        public void Send(byte[] buffer)
         {
-            _tcpSocket.SendTo(buffer, endPoint);
+            _tcpSocket.Send(buffer);
         }
 
         public void Bind(EndPoint localEndPoint)

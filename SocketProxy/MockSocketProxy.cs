@@ -41,9 +41,9 @@ namespace SocketProxy
             _mock.Object.Close();
         }
 
-        public void SendTo(byte[] buffer, EndPoint endPoint)
+        public void Send(byte[] buffer)
         {
-            _mock.Object.SendTo(buffer, endPoint);
+            _mock.Object.Send(buffer);
         }
 
         public void Bind(EndPoint localEndPoint)
@@ -111,9 +111,9 @@ namespace SocketProxy
         /// </summary>
         /// <param name="buffer"></param>
         /// <param name="endPoint"></param>
-        public void VerifySend(byte[] buffer, EndPoint endPoint)
+        public void VerifySend(byte[] buffer)
         {
-            _mock.Verify(x => x.SendTo(buffer, endPoint));
+            _mock.Verify(x => x.Send(buffer));
         }
 
         /// <summary>

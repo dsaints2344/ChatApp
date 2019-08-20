@@ -19,7 +19,7 @@ namespace SocketProxy
         void Connect(IPAddress ip, int port);
         bool Connected();
         void Close();
-        void SendTo(byte[] buffer, EndPoint endPoint);
+        void Send(byte[] buffer);
         void Bind(EndPoint localEndPoint);
         void Listen(int backlog);
         int Receive(byte[] buffer);
