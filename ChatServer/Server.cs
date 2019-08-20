@@ -26,13 +26,13 @@ namespace ChatServer
             {
                 _socket.Bind(new IPEndPoint(ip, port));
                 _socket.Listen(6);
-                
+
 
                 while (true)
                 {
                     Console.WriteLine("Waiting for connection...");
                     var handler = _socket.Accept();
-                    
+
                     data = null;
 
                     while (true)
@@ -45,6 +45,10 @@ namespace ChatServer
                         }
                     }
                     Console.WriteLine("Text received : {0}", data);
+
+                    byte[] msg = Encoding.ASCII.GetBytes(data);
+
+                    handler.Send(msg);
 
                 }
 
