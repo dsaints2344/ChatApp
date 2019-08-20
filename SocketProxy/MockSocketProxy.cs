@@ -110,7 +110,6 @@ namespace SocketProxy
         /// This method tests the sending of data to the socket to an EndPoint
         /// </summary>
         /// <param name="buffer"></param>
-        /// <param name="endPoint"></param>
         public void VerifySend(byte[] buffer)
         {
             _mock.Verify(x => x.Send(buffer));
