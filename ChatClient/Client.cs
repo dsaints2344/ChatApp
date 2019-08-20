@@ -18,8 +18,6 @@ namespace ChatClient
         }
         public void StartClient(IPAddress ip, int port) {
 
-            //Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream
-            //   , ProtocolType.Tcp);
             byte[] bytes = new byte[1024];
 
             try

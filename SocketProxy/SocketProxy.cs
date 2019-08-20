@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace SocketProxy
 {
+    /// <summary>
+    /// This class will be used as a wrapper class.
+    /// It will be used during run time for the socket operations
+    /// <see cref="Socket"/> 
+    /// </summary>
     public class SocketProxy: ISocketProxy
     {
         private readonly Socket _tcpSocket;
@@ -18,7 +23,7 @@ namespace SocketProxy
                 ProtocolType.Tcp);
         }
 
-        public SocketProxy(Socket tcpSocket)
+        private SocketProxy(Socket tcpSocket)
         {
             _tcpSocket = tcpSocket;
         }

@@ -21,8 +21,6 @@ namespace ChatServer
 
         public void RunSocket(IPAddress ip, int port)
         {
-            Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream
-                , ProtocolType.Tcp);
 
             try
             {
@@ -41,7 +39,7 @@ namespace ChatServer
                     int bytesReceived = _socket.Receive(bytes);
 
                     data += Encoding.ASCII.GetString(bytes, 0, bytesReceived);
-                    if (data.IndexOf("<EOF>") > -1)
+                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
                     {
                         break;
                     }

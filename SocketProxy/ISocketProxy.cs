@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace SocketProxy
 {
+    /// <summary>
+    /// This is interface contains the methods that will used inside the mockup
+    /// matching te Socket Class methods
+    /// <see cref="Socket"/>
+    /// </summary>
     public interface ISocketProxy
     {
 
