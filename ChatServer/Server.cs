@@ -48,19 +48,6 @@ namespace ChatServer
 
                 }
 
-//                while (true)
-//                {
-//                    bytes = new byte[1024];
-//                    int bytesReceived = _socket.Receive(bytes);
-//
-//                    data += Encoding.ASCII.GetString(bytes, 0, bytesReceived);
-//                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
-//                    {
-//                        break;
-//                    }
-//                }
-//                Console.WriteLine("User connected: {0}", data);
-
             }
             catch(Exception e)
             {
