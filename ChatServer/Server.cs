@@ -21,36 +21,11 @@ namespace ChatServer
 
         public void RunSocket(IPAddress ip, int port)
         {
-            byte[] bytes = new byte[1024];
             try
             {
                 _socket.Bind(new IPEndPoint(ip, port));
                 _socket.Listen(6);
 
-
-                while (true)
-                {
-                    Console.WriteLine("Waiting for connection...");
-                    var handler = _socket.Accept();
-
-                    data = null;
-
-                    while (true)
-                    {
-                        int byteRec = handler.Receive(bytes);
-                        data += Encoding.ASCII.GetString(bytes, 0, byteRec);
-                        if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
-                        {
-                            break;
-                        }
-                    }
-                    Console.WriteLine("Text received : {0}", data);
-
-                    byte[] msg = Encoding.ASCII.GetBytes(data);
-
-                    handler.Send(msg);
-
-                }
 
             }
             catch(Exception e)
@@ -58,6 +33,34 @@ namespace ChatServer
                 Console.WriteLine(e.ToString());
             }
 
+        }
+
+        public void ReceiveConnections()
+        {
+            byte[] bytes = new byte[1024];
+            while (true)
+            {
+                Console.WriteLine("Waiting for connection...");
+                var handler = _socket.Accept();
+
+                data = null;
+
+                while (true)
+                {
+                    int byteRec = handler.Receive(bytes);
+                    data += Encoding.ASCII.GetString(bytes, 0, byteRec);
+                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                    {
+                        break;
+                    }
+                }
+                Console.WriteLine("Text received : {0}", data);
+
+                byte[] msg = Encoding.ASCII.GetBytes(data);
+
+                handler.Send(msg);
+
+            }
         }
 
         public void CloseSocket() {
