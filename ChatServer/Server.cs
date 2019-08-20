@@ -12,7 +12,7 @@ namespace ChatServer
     public class Server
     {
         private readonly ISocketProxy _socket;
-
+        private static string data = null;
 
         public Server(ISocketProxy socket)
         {
@@ -21,30 +21,45 @@ namespace ChatServer
 
         public void RunSocket(IPAddress ip, int port)
         {
-
+            byte[] bytes = new byte[1024];
             try
             {
                 _socket.Bind(new IPEndPoint(ip, port));
                 _socket.Listen(6);
-
-                Console.WriteLine("Waiting for connection...");
-                _socket.Accept();
-
-                string data = null;
-                byte[] bytes = null;
+                
 
                 while (true)
                 {
-                    bytes = new byte[1024];
-                    int bytesReceived = _socket.Receive(bytes);
+                    Console.WriteLine("Waiting for connection...");
+                    var handler = _socket.Accept();
+                    
+                    data = null;
 
-                    data += Encoding.ASCII.GetString(bytes, 0, bytesReceived);
-                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                    while (true)
                     {
-                        break;
+                        int byteRec = handler.Receive(bytes);
+                        data += Encoding.ASCII.GetString(bytes, 0, byteRec);
+                        if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                        {
+                            break;
+                        }
                     }
+                    Console.WriteLine("Text received : {0}", data);
+
                 }
-                Console.WriteLine("User connected: {0}", data);
+
+//                while (true)
+//                {
+//                    bytes = new byte[1024];
+//                    int bytesReceived = _socket.Receive(bytes);
+//
+//                    data += Encoding.ASCII.GetString(bytes, 0, bytesReceived);
+//                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+//                    {
+//                        break;
+//                    }
+//                }
+//                Console.WriteLine("User connected: {0}", data);
 
             }
             catch(Exception e)

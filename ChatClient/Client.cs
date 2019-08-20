@@ -31,6 +31,7 @@ namespace ChatClient
                 IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
                 // Send the data through the socket.    
                 _socket.SendTo(msg,  endPoint);
+                
             }
             catch (Exception)
             {
