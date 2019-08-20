@@ -13,13 +13,15 @@ namespace ChatClient
         {
             SocketProxy.SocketProxy s = new SocketProxy.SocketProxy();
             Client chatClient = new Client(s);
-
-            string command = Console.ReadLine();
+            int connectCounter = 0;
+            
             while (true)
             {
-                if (command == "Connect")
+                string command = Console.ReadLine();
+                if (command == "Connect" && connectCounter == 0)
                 {
                     chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
+                    connectCounter++;
 
                 }
             }

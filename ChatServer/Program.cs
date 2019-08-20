@@ -30,6 +30,7 @@ namespace ChatServer
                 if ((command == "Connect" && connectCounter == 0) || (command == "connect" && connectCounter == 0))
                 {
                     chatServer.RunSocket(IPAddress.Parse("127.0.0.1"), 8080);
+                    connectCounter++;
                     Console.WriteLine("Starting server at IPAddress: 127.0.0.1 on port 8080");
                     
                 }
