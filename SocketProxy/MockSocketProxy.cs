@@ -140,6 +140,11 @@ namespace SocketProxy
             _mock.Verify(x => x.Close(), Times.Once);
         }
 
+        public int Login(string command)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
     }
