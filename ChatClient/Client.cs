@@ -38,5 +38,17 @@ namespace ChatClient
                 throw;
             }
         }
+        
+        public void ExitClient()
+        {
+            _socket.Close();
+            bool connected = _socket.Connected();
+
+            if (!connected)
+            {
+                Console.WriteLine("Bye");
+                Console.WriteLine(connected);
+            }
+        }
     }
 }

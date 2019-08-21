@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocketProxy;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,12 +19,30 @@ namespace ChatClient
             while (true)
             {
                 string command = Console.ReadLine();
-                if (command == "Connect" && connectCounter == 0)
+                if (command.Contains(':'))
                 {
-                    chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
-                    connectCounter++;
+                    var cmd = command.Split(':')[0];
+                    if (cmd.Equals("connect", StringComparison.OrdinalIgnoreCase) && connectCounter == 0)
+                    {
+                        try
+                        {
+                            chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
+                            connectCounter++;
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
 
+                    }
+                    else if (cmd.Equals("exit", StringComparison.OrdinalIgnoreCase) && connectCounter > 0)
+                        chatClient.ExitClient();
                 }
+                else
+                {
+                    // Other commands
+                }
+                
             }
             
         }

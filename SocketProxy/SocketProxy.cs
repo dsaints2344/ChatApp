@@ -43,6 +43,7 @@ namespace SocketProxy
         public void Close()
         {
             _tcpSocket.Close();
+            _tcpSocket.Dispose();
         }
 
 
