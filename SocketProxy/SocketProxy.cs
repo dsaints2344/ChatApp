@@ -72,6 +72,17 @@ namespace SocketProxy
             return new SocketProxy(_tcpSocket.Accept());
         }
 
+        public bool Login(string command="")
+        {
+            var result = false;
+            if (!string.IsNullOrEmpty(command) && !string.IsNullOrWhiteSpace(command))
+            {
+
+            }
+
+            return result;
+        }
+
         #endregion
     }
 }

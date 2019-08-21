@@ -27,7 +27,6 @@ namespace ChatServer
                 _socket.Bind(new IPEndPoint(ip, port));
                 _socket.Listen(6);
 
-
             }
             catch(Exception e)
             {
@@ -74,6 +73,10 @@ namespace ChatServer
         public void CloseSocket() {
 
             _socket.Close();
+        }
+
+        private void ValidateClientMessage()
+        {
 
         }
     }

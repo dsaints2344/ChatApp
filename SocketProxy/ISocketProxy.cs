@@ -24,6 +24,6 @@ namespace SocketProxy
         void Listen(int backlog);
         int Receive(byte[] buffer);
         ISocketProxy Accept();
-
+        bool Login();
     }
 }
