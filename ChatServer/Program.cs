@@ -27,7 +27,7 @@ namespace ChatServer
                 {
                     break;
                 }
-                if ((command == "Connect" && connectCounter == 0) || (command == "connect" && connectCounter == 0))
+                if (command.Equals("connect", StringComparison.OrdinalIgnoreCase) && connectCounter == 0)
                 {
                     chatServer.RunSocket(IPAddress.Parse("127.0.0.1"), 8080);
                     connectCounter++;
@@ -35,11 +35,11 @@ namespace ChatServer
                     
                 }
 
-                if ((command == "Listen" && connectCounter == 1) || (command == "listen" && connectCounter == 1))
+                if (command.Equals("listen", StringComparison.OrdinalIgnoreCase) && connectCounter == 1)
                 {
                     chatServer.ReceiveConnections();
                 }
-                if (command == "Close" || command == "close")
+                if (command.Equals("close", StringComparison.OrdinalIgnoreCase))
                 {
                     chatServer.CloseSocket();
                     Console.WriteLine("Closing Socket...");
