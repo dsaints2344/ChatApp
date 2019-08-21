@@ -19,32 +19,14 @@ namespace ChatClient
             while (true)
             {
                 string command = Console.ReadLine();
-                if (command.Contains(':'))
+                if (command.Equals("connect", StringComparison.OrdinalIgnoreCase) && connectCounter == 0)
                 {
-                    var cmd = command.Split(':')[0];
-                    if (cmd.Equals("connect", StringComparison.OrdinalIgnoreCase) && connectCounter == 0)
-                    {
-                        try
-                        {
-                            chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
-                            connectCounter++;
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-
-                    }
-                    else if (cmd.Equals("exit", StringComparison.OrdinalIgnoreCase) && connectCounter > 0)
-                        chatClient.ExitClient();
+                    chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
+                    connectCounter++;
                 }
-                else
-                {
-                    // Other commands
-                }
-                
-            }
-            
+                else if (command.Equals("exit", StringComparison.OrdinalIgnoreCase) && connectCounter > 0)
+                    chatClient.ExitClient();  // Other commands
+            }            
         }
     }
 }
