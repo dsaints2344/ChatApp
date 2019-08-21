@@ -12,4 +12,16 @@
         public static string push_user_list { get => nameof(push_user_list); }
         public static string login { get => nameof(login); }
     }
+
+    public static class Symbols
+    {
+        public static char CommandSeparator { get => ':'; }
+        public static char ParameterSeparator { get => '?'; }
+    }
+
+    public enum eResponses
+    {
+        Connected,
+        NoConnected
+    }
 }
