@@ -30,6 +30,7 @@ namespace ChatClient
             
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Welcome to the ChatApp");
                 Console.WriteLine("In order to continue you should include the following requirements:\n " +
                                    "1. Must contain between 6 and 10 characters\n" +
@@ -41,13 +42,13 @@ namespace ChatClient
 
                 if (cmd.Equals(Commands.login, StringComparison.OrdinalIgnoreCase))
                 {
-                    chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
-                    bool netStatus = s.Connected();
-
                     bool isValid = CheckUser(user);
 
                     if (isValid)
                     {
+                        chatClient.StartClient(IPAddress.Parse("127.0.0.1"), 8080);
+                        bool netStatus = s.Connected();
+
                         // If could connect with server will print 1, else 0
                         if (netStatus)
                         {
@@ -59,7 +60,8 @@ namespace ChatClient
                     else
                     {
                         Console.WriteLine("Username doesn't meet the minimum requirements");
-                        return;
+                        Console.ReadKey();
+                        continue;
                     }
                 }
             }            
