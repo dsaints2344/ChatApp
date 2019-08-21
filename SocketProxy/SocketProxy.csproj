@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands.cs" />
     <Compile Include="MockSocketProxy.cs" />
     <Compile Include="ISocketProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
