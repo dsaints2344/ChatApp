@@ -45,6 +45,7 @@ namespace ChatServer
 
                 data = null;
 
+
                 while (true)
                 {
                     int byteRec = handler.Receive(bytes);
