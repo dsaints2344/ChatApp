@@ -13,6 +13,7 @@ namespace ChatServer
     {
         private readonly ISocketProxy _socket;
         private static string data = null;
+        private List<string> _userList = new List<string>();
 
         public Server(ISocketProxy socket)
         {
@@ -37,6 +38,7 @@ namespace ChatServer
 
         public void ReceiveConnections()
         {
+            
             byte[] bytes = new byte[1024];
             while (true)
             {
@@ -50,16 +52,21 @@ namespace ChatServer
                 {
                     int byteRec = handler.Receive(bytes);
                     data += Encoding.ASCII.GetString(bytes, 0, byteRec);
-                    if (data.IndexOf("<EOF>", StringComparison.Ordinal) > -1)
+                    if (data.Length > 0)
                     {
                         break;
                     }
                 }
-                Console.WriteLine("Text received : {0}", data);
+                _userList.Add(data);
 
-                byte[] msg = Encoding.ASCII.GetBytes(data);
+                foreach (var user in bytes)
+                {
+                    byte[] msg = Encoding.ASCII.GetBytes(user.ToString());
+                    handler.Send(msg);
+                }
+                
 
-                handler.Send(msg);
+                
 
             }
         }
