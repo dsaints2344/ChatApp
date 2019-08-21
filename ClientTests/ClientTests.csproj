@@ -58,6 +58,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChatClient\ChatClient.csproj">
+      <Project>{D19D02E7-AF8E-481B-A082-EF4CC91FECC0}</Project>
+      <Name>ChatClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SocketProxy\SocketProxy.csproj">
+      <Project>{7942DBF7-9354-41B2-934B-E1F80C52A3C0}</Project>
+      <Name>SocketProxy</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
