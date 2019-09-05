@@ -61,7 +61,24 @@ namespace ChatClient
 
                     if (isValid){
                         //ChatApp(chatClient);
-                        
+                        while (true)
+                        {
+                            byte[] receivedBytes = new byte[1024];
+                            Console.WriteLine("Welcome to the ChatApp\n\n\n");
+                            command = Console.ReadLine();
+
+
+
+                            if (command.Equals(Commands.user_list, StringComparison.OrdinalIgnoreCase))
+                            {
+                                receivedBytes = Encoding.Default.GetBytes(command);
+                                int totalReceivedBytes = s.Receive(receivedBytes);
+                                Console.WriteLine($"User lists\n {Encoding.ASCII.GetString(receivedBytes, 0, totalReceivedBytes)}");
+                            }
+
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                        }
 
                     } else {
                         Console.WriteLine("Username doesn't meet the minimum requirements");
@@ -72,26 +89,5 @@ namespace ChatClient
             }            
         }
 
-        static void ChatApp(Client client){
-            while (true)
-            {
-                byte[] receivedBytes = new byte[1024];
-                Console.WriteLine("Welcome to the ChatApp\n\n\n");
-                string command = Console.ReadLine();
-
-                
-
-                if (command.Equals(Commands.user_list, StringComparison.OrdinalIgnoreCase))
-                {
-                    receivedBytes = Encoding.Default.GetBytes(command);
-                    int totalReceivedBytes = s.Receive(receivedBytes);
-                    Console.WriteLine($"User lists\n {Encoding.ASCII.GetString(receivedBytes, 0, totalReceivedBytes)}");
-                }
-
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
-            }
-
-        }
     }
 }
