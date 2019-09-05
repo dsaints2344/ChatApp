@@ -16,10 +16,8 @@ namespace ChatClient
         {
             _socket = socket;
         }
+
         public void StartClient(IPAddress ip, int port) {
-
-            byte[] bytes = new byte[1024];
-
             try
             {
                 _socket.Connect(ip, port);

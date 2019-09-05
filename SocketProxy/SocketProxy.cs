@@ -134,7 +134,7 @@ namespace SocketProxy
             var result = new string[0];
             if (!string.IsNullOrWhiteSpace(parameters) && !string.IsNullOrEmpty(parameters))
             {
-                var tempParameters = parameters.Split(Symbols.ParameterSeparator);
+                var tempParameters = parameters.Split(Symbols.ParamSeparator);
 
                 if (tempParameters.Length == 0) return default(string[]);
                 result = tempParameters;

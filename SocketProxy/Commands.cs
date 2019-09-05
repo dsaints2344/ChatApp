@@ -18,7 +18,7 @@
     public static class Symbols
     {
         public static char CommandSeparator { get => ':'; }
-        public static char ParameterSeparator { get => '?'; }
+        public static char ParamSeparator { get => '?'; }
     }
 
     public enum eResponses { Connected, NoConnected }

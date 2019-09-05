@@ -80,21 +80,14 @@ namespace ChatServer
                     byte[] msg = Encoding.ASCII.GetBytes(user.ToString());
                     handler.Send(msg);
                 }
-                
-
-                
-
             }
         }
+
+
 
         public void CloseSocket() {
 
             _socket.Close();
-        }
-
-        private void ValidateClientMessage()
-        {
-
         }
     }
 }
