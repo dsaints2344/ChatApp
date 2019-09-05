@@ -66,6 +66,11 @@ namespace SocketProxy
             return _mock.Object.Accept();
         }
 
+        public IPAddress RemoteEndPoint()
+        {
+            return _mock.Object.RemoteEndPoint();
+        }
+
         #endregion
 
         #region TestMethods

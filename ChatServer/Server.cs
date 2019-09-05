@@ -9,11 +9,21 @@ using SocketProxy;
 
 namespace ChatServer
 {
+    /// <summary>
+    /// Client State Class contains client name and state (connected)
+    /// </summary>
+    public class ClientState
+    {
+        public string Name { get; set; }
+        public string State { get; private set; } = "connected";
+    }
     public class Server
     {
         private readonly ISocketProxy _socket;
+        public List<ISocketProxy> _clientSockets = new List<ISocketProxy>();
         private static string data = null;
-        private List<string> _userList = new List<string>();
+        private static Dictionary<IPAddress, ClientState> _clients = new Dictionary<IPAddress,ClientState>();
+
 
         public Server(ISocketProxy socket)
         {
@@ -37,12 +47,15 @@ namespace ChatServer
 
         public void ReceiveConnections()
         {
-            
+            string clientName = string.Empty;
             byte[] bytes = new byte[1024];
             while (true)
             {
                 Console.WriteLine("Waiting for connection...");
                 var handler = _socket.Accept();
+                _clientSockets.Add(handler);
+
+                IPAddress clientAddress = handler.RemoteEndPoint();
 
                 data = null;
 
@@ -51,12 +64,16 @@ namespace ChatServer
                 {
                     int byteRec = handler.Receive(bytes);
                     data += Encoding.ASCII.GetString(bytes, 0, byteRec);
+
+                    clientName = data.Replace("connect: ", "");
+                    ClientState clientState = new ClientState() { Name = clientName };
+                    _clients.Add(clientAddress, clientState);
+
                     if (data.Length > 0)
                     {
                         break;
                     }
                 }
-                _userList.Add(data);
 
                 foreach (var user in bytes)
                 {

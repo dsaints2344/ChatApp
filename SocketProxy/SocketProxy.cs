@@ -69,6 +69,15 @@ namespace SocketProxy
             return new SocketProxy(_tcpSocket.Accept());
         }
 
+        /// <summary>
+        /// This method return Ip address of client
+        /// </summary>
+        /// <returns></returns>
+        public IPAddress RemoteEndPoint()
+        {
+            return IPAddress.Parse(((IPEndPoint)_tcpSocket.RemoteEndPoint).Address.ToString());
+        }
+
         public int Login(string command = "")
         {
             if (!string.IsNullOrEmpty(command) && !string.IsNullOrWhiteSpace(command))

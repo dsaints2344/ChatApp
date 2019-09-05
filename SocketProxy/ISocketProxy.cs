@@ -25,5 +25,6 @@ namespace SocketProxy
         int Receive(byte[] buffer);
         ISocketProxy Accept();
         int Login(string command);
+        IPAddress RemoteEndPoint();
     }
 }
