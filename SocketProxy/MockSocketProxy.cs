@@ -145,6 +145,14 @@ namespace SocketProxy
             _mock.Verify(x => x.Close(), Times.Once);
         }
 
+        /// <summary>
+        /// This methods tests if the server can get client IPAddress
+        /// </summary>
+        public void VerifyRemoteEndPoint()
+        {
+            _mock.Verify(x => x.RemoteEndPoint());
+        }
+
         public int Login(string command)
         {
             throw new NotImplementedException();

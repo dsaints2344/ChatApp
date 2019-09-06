@@ -33,5 +33,19 @@ namespace ServerTests
             mockedServer.VerifyClose();
             
         }
+
+        [TestMethod]
+        public void Get_Client_IP_Address()
+        {
+            var mockedServer = new MockSocketProxy();
+            var testServer = new Server(mockedServer);
+
+            testServer.RunSocket(IPAddress.Parse("180.0.0.0"), 2100);
+            mockedServer.VerifyBind(new IPEndPoint(IPAddress.Parse("180.0.0.0"), 2100));
+            mockedServer.VerifyListen(6);
+            testServer.ReceiveConnections();
+            mockedServer.VerifyRemoteEndPoint();
+
+        }
     }
 }
